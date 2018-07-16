@@ -1,7 +1,8 @@
-#include <iostream>
-#include <unistd.h>
-#include <stdlib.h>
+#include "createBombs.hpp"
 #include "show.hpp"
+#include <iostream>
+#include <stdlib.h>
+#include <unistd.h>
 
 int main() {
   int x = 4, y = 6;
@@ -13,6 +14,7 @@ int main() {
       tabHidden[i][j] = '0';
     }
   }
+  createBombs(tabHidden);
   while (1) {
     system("clear");
     show(tabVisible, x, y, 1);
