@@ -1,10 +1,13 @@
 #include "createBombs.hpp"
 #include "show.hpp"
+#include "keyPressed.hpp"
+#include "kbhit.hpp"
 #include <iostream>
 #include <stdlib.h>
 #include <unistd.h>
 
 int main() {
+  char c;
   int x = 4, y = 6;
   char tabHidden[10][10];
   char tabVisible[10][10];
@@ -15,18 +18,26 @@ int main() {
     }
   }
   createBombs(tabHidden);
-  while (1) {
+  while (c != 'q') {
     system("clear");
     show(tabVisible, x, y, 1);
     std::cout << std::endl;
     show(tabHidden, x, y, 1);
     usleep(700000);
+    if (kbhit()) {
+      std::cin >> c;
+      keyPressed(c, x, y);
+    }
 
     system("clear");
     show(tabVisible, x, y, 0);
     std::cout << std::endl;
     show(tabHidden, x, y, 0);
     usleep(700000);
+    if (kbhit()) {
+      std::cin >> c;
+      keyPressed(c, x, y);
+    }
   }
   return 0;
 }
