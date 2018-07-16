@@ -1,3 +1,3 @@
 #pragma once
 
-void createBombs(char tab[10][10]);
+void createBombs(int tab[10][10]);
