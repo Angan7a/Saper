@@ -23,17 +23,7 @@ int main() {
     show(tabVisible, x, y, 1);
     std::cout << std::endl;
     show(tabHidden, x, y, 1);
-    usleep(700000);
-    if (kbhit()) {
-      std::cin >> c;
-      keyPressed(c, x, y, tabVisible, tabHidden);
-    }
-
-    system("clear");
-    show(tabVisible, x, y, 0);
-    std::cout << std::endl;
-    show(tabHidden, x, y, 0);
-    usleep(700000);
+    usleep(70000);
     if (kbhit()) {
       std::cin >> c;
       keyPressed(c, x, y, tabVisible, tabHidden);
