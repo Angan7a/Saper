@@ -26,7 +26,7 @@ int main() {
     usleep(700000);
     if (kbhit()) {
       std::cin >> c;
-      keyPressed(c, x, y);
+      keyPressed(c, x, y, tabVisible, tabHidden);
     }
 
     system("clear");
@@ -36,7 +36,7 @@ int main() {
     usleep(700000);
     if (kbhit()) {
       std::cin >> c;
-      keyPressed(c, x, y);
+      keyPressed(c, x, y, tabVisible, tabHidden);
     }
   }
   return 0;
