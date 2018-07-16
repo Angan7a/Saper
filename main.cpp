@@ -6,12 +6,12 @@
 
 int main() {
   int x = 4, y = 6;
-  int tabHidden[10][10];
+  char tabHidden[10][10];
   char tabVisible[10][10];
   for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 10; j++) {
       tabVisible[i][j] = '#';
-      tabHidden[i][j] = 0;
+      tabHidden[i][j] = '0';
     }
   }
   createBombs(tabHidden);
