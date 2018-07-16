@@ -1,6 +1,8 @@
 #include "keyPressed.hpp"
+#include "fieldReveal.hpp"
 
-void keyPressed(char& c, int& x, int& y, char tabVisible[10][10], char tabHidden[10][10]) {
+void keyPressed(char &c, int &x, int &y, char tabVisible[10][10],
+                char tabHidden[10][10]) {
   if (c == 'l') {
     x++;
   }
@@ -17,7 +19,7 @@ void keyPressed(char& c, int& x, int& y, char tabVisible[10][10], char tabHidden
     return;
   }
   if (c == 'v') {
-      tabVisible[y][x] = tabHidden[y][x];
+    fieldReveal(x, y, tabVisible, tabHidden);
   }
   c = 'a';
 }
