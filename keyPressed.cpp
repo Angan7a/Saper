@@ -4,16 +4,16 @@
 void keyPressed(char &c, int &x, int &y, char tabVisible[10][10],
                 char tabHidden[10][10]) {
   if (c == 'l') {
-    y++;
-  }
-  if (c == 'j') {
-    y--;
-  }
-  if (c == 'k') {
     x++;
   }
-  if (c == 'i') {
+  if (c == 'j') {
     x--;
+  }
+  if (c == 'k') {
+    y++;
+  }
+  if (c == 'i') {
+    y--;
   }
   if (c == 'q') {
     return;
