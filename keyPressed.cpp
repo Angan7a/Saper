@@ -1,6 +1,7 @@
 #include "keyPressed.hpp"
 #include "fieldReveal.hpp"
 #include "findNoEmptyRight.hpp"
+#include "findNoEmptyLeft.hpp"
 
 void keyPressed(char &c, int &x, int &y, char tabVisible[10][10],
                 char tabHidden[10][10]) {
@@ -10,6 +11,7 @@ void keyPressed(char &c, int &x, int &y, char tabVisible[10][10],
   }
   if (c == 'j') {
     x--;
+    findNoEmptyLeft(x, y, tabVisible);
   }
   if (c == 'k') {
     y++;
