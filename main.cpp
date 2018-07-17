@@ -30,7 +30,8 @@ int main() {
       keyPressed(c, x, y, bombs, tabVisible, tabHidden);
     }
     if (bombs == 0) {
-
+      system("clear");
+      show(tabVisible, x, y, 1, bombs);
       bombsCheck(tabVisible, tabHidden, c);
     }
   }
