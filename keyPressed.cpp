@@ -31,6 +31,9 @@ void keyPressed(char &c, int &x, int &y, int &bombs, char tabVisible[10][10],
     bombs++;
   }
   if (c == 'v') {
+    if (tabVisible[y][x] == '@') {
+      bombs++;
+    }
     fieldReveal(x, y, bombs, tabVisible, tabHidden);
     findNoEmptyRight(x, y, tabVisible);
   }
