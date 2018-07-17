@@ -2,6 +2,8 @@
 #include "fieldReveal.hpp"
 #include "findNoEmptyRight.hpp"
 #include "findNoEmptyLeft.hpp"
+#include "findNoEmptyUp.hpp"
+#include "findNoEmptyDown.hpp"
 
 void keyPressed(char &c, int &x, int &y, char tabVisible[10][10],
                 char tabHidden[10][10]) {
@@ -15,9 +17,11 @@ void keyPressed(char &c, int &x, int &y, char tabVisible[10][10],
   }
   if (c == 'k') {
     y++;
+    findNoEmptyDown(x, y, tabVisible);
   }
   if (c == 'i') {
     y--;
+    findNoEmptyUp(x, y, tabVisible);
   }
   if (c == 'q') {
     return;
