@@ -1,14 +1,15 @@
+#include "bombsCheck.hpp"
 #include "createBombs.hpp"
-#include "show.hpp"
-#include "keyPressed.hpp"
 #include "kbhit.hpp"
+#include "keyPressed.hpp"
+#include "show.hpp"
 #include <iostream>
 #include <stdlib.h>
 #include <unistd.h>
 
 int main() {
   char c;
-  int x = 4, y = 6;
+  int x = 4, y = 6, bombs = 5;
   char tabHidden[10][10];
   char tabVisible[10][10];
   for (int i = 0; i < 10; i++) {
@@ -20,13 +21,17 @@ int main() {
   createBombs(tabHidden);
   while (c != 'q') {
     system("clear");
-    show(tabVisible, x, y, 1);
+    show(tabVisible, x, y, 1, bombs);
     std::cout << std::endl;
-    show(tabHidden, x, y, 1);
+    show(tabHidden, x, y, 1, bombs);
     usleep(70000);
     if (kbhit()) {
       std::cin >> c;
-      keyPressed(c, x, y, tabVisible, tabHidden);
+      keyPressed(c, x, y, bombs, tabVisible, tabHidden);
+    }
+    if (bombs == 0) {
+
+      bombsCheck(tabVisible, tabHidden, c);
     }
   }
   return 0;
