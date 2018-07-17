@@ -1,11 +1,12 @@
 #include "keyPressed.hpp"
+#include "bombMarker.hpp"
 #include "fieldReveal.hpp"
-#include "findNoEmptyRight.hpp"
 #include "findNoEmptyLeft.hpp"
 #include "findNoEmptyUp.hpp"
 #include "findNoEmptyDown.hpp"
+#include "findNoEmptyRight.hpp"
 
-void keyPressed(char &c, int &x, int &y, char tabVisible[10][10],
+void keyPressed(char &c, int &x, int &y, int &bombs, char tabVisible[10][10],
                 char tabHidden[10][10]) {
   if (c == 'l') {
     x++;
@@ -27,8 +28,11 @@ void keyPressed(char &c, int &x, int &y, char tabVisible[10][10],
     return;
   }
   if (c == 'v') {
-    fieldReveal(x, y, tabVisible, tabHidden);
+    fieldReveal(x, y, bombs, tabVisible, tabHidden);
     findNoEmptyRight(x, y, tabVisible);
+  }
+  if (c == 'b') {
+    bombMarker(x, y, bombs, tabVisible);
   }
   c = 'a';
 }
