@@ -1,24 +1,13 @@
-#include "bombsCheck.hpp"
-#include "createBombs.hpp"
-#include "kbhit.hpp"
-#include "keyPressed.hpp"
-#include "show.hpp"
+#include "Board.hpp"
 #include <iostream>
 #include <stdlib.h>
 #include <unistd.h>
 
 int main() {
-  char c;
-  int x = 4, y = 6, bombs = 5;
-  char tabHidden[10][10];
-  char tabVisible[10][10];
-  for (int i = 0; i < 10; i++) {
-    for (int j = 0; j < 10; j++) {
-      tabVisible[i][j] = '#';
-      tabHidden[i][j] = '0';
-    }
-  }
-  createBombs(tabHidden);
+  Board board;
+  board.fillHashsZeros();
+  board.showTabVisible();
+/*  createBombs(tabHidden);
   while (c != 'q') {
     system("clear");
     show(tabVisible, x, y, 1, bombs);
@@ -34,6 +23,6 @@ int main() {
       show(tabVisible, x, y, 1, bombs);
       bombsCheck(tabVisible, tabHidden, c);
     }
-  }
+  }*/
   return 0;
 }
