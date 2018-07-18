@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-
 Board::Board(int x_, int y_, int bombs_) : x(x_), y(y_), bombs(bombs_) {}
 
 void Board::fillHashsZeros() {
@@ -15,7 +14,7 @@ void Board::fillHashsZeros() {
   }
 }
 
-void Board::showTabVisible() { 
+void Board::showTabVisible() {
   for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 10; j++) {
       if (j == x && i == y) {
@@ -29,7 +28,7 @@ void Board::showTabVisible() {
   std::cout << "Pozostalo bomb: " << bombs << std::endl;
 }
 
-void Board::showTabHidden() { 
+void Board::showTabHidden() {
   for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 10; j++) {
       if (j == x && i == y) {
@@ -62,18 +61,143 @@ void Board::createBombs() {
   }
   for (int i = 1; i < 11; i++) {
     for (int j = 1; j < 11; j++) {
-      tabHidden[i-1][j-1] = (tabInt[i][j] % 10)+48;
+      tabHidden[i - 1][j - 1] = (tabInt[i][j] % 10) + 48;
     }
   }
 }
 
-/*  void bombMarker();
-  void bombsCheck();
-  void fieldReveal();
-  void findNoEmptyDown();
-  void findNoEmptyLeft();
-  void findNoEmptyRight();
-  void findNoEmptyUp();
-  void keyPressed();
-};*/
+void Board::keyPressed(char &c) {
+  if (c == 'l') {
+    findNoEmptyRight();
+  }
+  if (c == 'j') {
+    findNoEmptyLeft();
+  }
+  if (c == 'k') {
+    findNoEmptyDown();
+  }
+  if (c == 'i') {
+    findNoEmptyUp();
+  }
+  if (c == 'q') {
+    return;
+  }
+  if (c == '?' && tabVisible[y][x] == '#') {
+    tabVisible[y][x] = '?';
+  }
+  if (c == '?' && tabVisible[y][x] == '@') {
+    tabVisible[y][x] = '?';
+    bombs++;
+  }
+  if (c == 'v') {
+    if (tabVisible[y][x] == '@') {
+      bombs++;
+    }
+    fieldReveal();
+    findNoEmptyRight();
+  }
+  if (c == 'b') {
+    bombMarker();
+  }
+  c = 'a';
+}
 
+void Board::bombMarker() {
+  if (tabVisible[y][x] == '#' || tabVisible[y][x] == '?') {
+    bombs--;
+    tabVisible[y][x] = '@';
+  } else if (tabVisible[y][x] == '@') {
+    tabVisible[y][x] = '#';
+    bombs++;
+  }
+}
+
+void Board::bombsCheck(char &c) {
+  bool win = true;
+  for (int i = 0; i < 10; i++)
+    for (int j = 0; j < 10; j++)
+      if (tabHidden[i][j] == '9')
+        if (tabVisible[i][j] != '@')
+          win = false;
+  if (win == true)
+    std::cout << std::endl << "Wygrales!";
+  else
+    std::cout << std::endl << "Przegrales!";
+  c = 'q';
+  std::cin.get();
+}
+
+void Board::fieldReveal() {
+  if (tabHidden[y][x] == '9')
+    bombs = 0;
+  tabVisible[y][x] = tabHidden[y][x];
+  if (tabHidden[y][x] == '0') {
+    tabVisible[y][x] = ' ';
+    if (x > 0 && tabVisible[y][x - 1] == '#')
+      fieldReveal();
+    if (x < 9 && tabVisible[y][x + 1] == '#')
+      fieldReveal();
+    if (y > 0 && tabVisible[y - 1][x] == '#')
+      fieldReveal();
+    if (y < 9 && tabVisible[y + 1][x] == '#')
+      fieldReveal();
+  }
+}
+
+void Board::findNoEmptyDown() {
+  do {
+    y++;
+    if (y > 9) {
+      x++;
+      y = 0;
+    }
+    if (x > 9) {
+      x = 0;
+      y = 0;
+    }
+  } while (tabVisible[y][x] == ' ');
+}
+
+void Board::findNoEmptyLeft() {
+  do {
+    x--;
+    if (x < 0) {
+      y--;
+      x = 9;
+    }
+    if (y < 0) {
+      x = 9;
+      y = 9;
+    }
+  } while (tabVisible[y][x] == ' ');
+}
+
+void Board::findNoEmptyRight() {
+  do {
+    x++;
+    if (x > 9) {
+      y++;
+      x = 0;
+    }
+    if (y > 9) {
+      x = 0;
+      y = 0;
+    }
+  } while (tabVisible[y][x] == ' ');
+}
+
+void Board::findNoEmptyUp() {
+  do {
+    y--;
+    if (y < 0) {
+      x--;
+      y = 9;
+    }
+    if (x < 0) {
+      x = 9;
+      y = 9;
+    }
+  } while (tabVisible[y][x] == ' ');
+}
+
+int Board::getBombs() const { return bombs; }
