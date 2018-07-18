@@ -4,7 +4,7 @@ class Board {
   int x, y, bombs;
   char tabHidden[10][10];
   char tabVisible[10][10];
-  void fieldReveal();
+  void fieldReveal(int, int);
   void findNoEmptyDown();
   void findNoEmptyLeft();
   void findNoEmptyRight();

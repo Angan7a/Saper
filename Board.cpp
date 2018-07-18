@@ -51,8 +51,8 @@ void Board::createBombs() {
   srand(time(NULL));
   int x, y;
   for (int k = 0; k < 5; k++) {
-    x = 1 + rand() % 11;
-    y = 1 + rand() % 11;
+    x = 1 + rand() % 10;
+    y = 1 + rand() % 10;
     tabInt[y][x] = 9;
     for (int i = y - 1; i <= y + 1; i++)
       for (int j = x - 1; j <= x + 1; j++)
@@ -93,7 +93,7 @@ void Board::keyPressed(char &c) {
     if (tabVisible[y][x] == '@') {
       bombs++;
     }
-    fieldReveal();
+    fieldReveal(x, y);
     findNoEmptyRight();
   }
   if (c == 'b') {
@@ -127,20 +127,20 @@ void Board::bombsCheck(char &c) {
   std::cin.get();
 }
 
-void Board::fieldReveal() {
-  if (tabHidden[y][x] == '9')
+void Board::fieldReveal(int xx, int yy) {
+  if (tabHidden[yy][xx] == '9')
     bombs = 0;
-  tabVisible[y][x] = tabHidden[y][x];
-  if (tabHidden[y][x] == '0') {
-    tabVisible[y][x] = ' ';
-    if (x > 0 && tabVisible[y][x - 1] == '#')
-      fieldReveal();
-    if (x < 9 && tabVisible[y][x + 1] == '#')
-      fieldReveal();
-    if (y > 0 && tabVisible[y - 1][x] == '#')
-      fieldReveal();
-    if (y < 9 && tabVisible[y + 1][x] == '#')
-      fieldReveal();
+  tabVisible[yy][xx] = tabHidden[yy][xx];
+  if (tabHidden[yy][xx] == '0') {
+    tabVisible[yy][xx] = ' ';
+    if (xx > 0 && tabVisible[yy][xx - 1] == '#')
+      fieldReveal(xx - 1, yy);
+    if (xx < 9 && tabVisible[yy][xx + 1] == '#')
+      fieldReveal(xx + 1, yy);
+    if (yy > 0 && tabVisible[yy - 1][xx] == '#')
+      fieldReveal(xx, yy - 1);
+    if (yy < 9 && tabVisible[yy + 1][xx] == '#')
+      fieldReveal(xx, yy + 1);
   }
 }
 
