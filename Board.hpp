@@ -8,8 +8,9 @@ public:
   Board(int x_ = 4, int y_ = 6, int bombs_ = 5);
   void fillHashsZeros();
   void showTabVisible();
-/*  void createBombs();
-  void bombMarker();
+  void showTabHidden();
+  void createBombs();
+/*  void bombMarker();
   void bombsCheck();
   void fieldReveal();
   void findNoEmptyDown();
