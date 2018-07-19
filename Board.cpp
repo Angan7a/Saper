@@ -215,10 +215,12 @@ int Board::getBombs() const { return bombs; }
 void Board::showEndingBoard(bool win) {
   for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 10; j++) {
-      if (tabVisible[i][j] == '@') {
-        std::cout << "\033[1;41m" << tabHidden[i][j] << "\033[0m ";
+      if (tabVisible[i][j] == '@'&& tabHidden[i][j] == '9') {
+        std::cout << "@" << " ";
+      } else if (tabHidden[i][j] == '9'){
+        std::cout << "\033[1;41m" << "@" << "\033[0m ";
       } else {
-        std::cout << tabHidden[i][j] << " ";
+        std::cout << tabVisible[i][j] << " ";
       }
     }
     std::cout << std::endl;
