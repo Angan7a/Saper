@@ -4,17 +4,16 @@
 #include <time.h>
 
 Board::Board(int x_, int y_, int bombs_) : x(x_), y(y_), bombs(bombs_) {
-    keyGuide[0]=" ";
-    keyGuide[1]="q - quit";
-keyGuide[2]= "i - move up";
-keyGuide[3]="k - move down";
-keyGuide[4]="j - move left";
-keyGuide[5]="l - move right";
-keyGuide[6]="v - show visible field (number neighbour bombs, or bombs :-))";
-keyGuide[7]="b - mark field as bomb";
-keyGuide[8]="? - mark field as it can be bomb";
-keyGuide[9]=" ";
-
+  keyGuide[0] = " ";
+  keyGuide[1] = "q - quit";
+  keyGuide[2] = "i - move up";
+  keyGuide[3] = "k - move down";
+  keyGuide[4] = "j - move left";
+  keyGuide[5] = "l - move right";
+  keyGuide[6] = "v - show visible field (number neighbour bombs, or bombs :-))";
+  keyGuide[7] = "b - mark field as bomb";
+  keyGuide[8] = "? - mark field as it can be bomb";
+  keyGuide[9] = " ";
 }
 
 void Board::fillHashsZeros() {
