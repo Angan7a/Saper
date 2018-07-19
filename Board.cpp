@@ -61,14 +61,21 @@ void Board::createBombs() {
   }
   srand(time(NULL));
   int x, y;
-  for (int k = 0; k < 5; k++) {
+  int k = bombs;
+  while (k) {
     x = 1 + rand() % 10;
     y = 1 + rand() % 10;
-    tabInt[y][x] = 9;
-    for (int i = y - 1; i <= y + 1; i++)
-      for (int j = x - 1; j <= x + 1; j++)
-        if (tabInt[i][j] != 9)
-          tabInt[i][j]++;
+    if (tabInt[y][x] != 9) {
+      tabInt[y][x] = 9;
+      k--;
+      for (int i = y - 1; i <= y + 1; i++) {
+        for (int j = x - 1; j <= x + 1; j++) {
+          if (tabInt[i][j] != 9) {
+            tabInt[i][j]++;
+          }
+        }
+      }
+    }
   }
   for (int i = 1; i < 11; i++) {
     for (int j = 1; j < 11; j++) {
