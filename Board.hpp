@@ -1,7 +1,10 @@
 #pragma once
 
+#include <string>
+
 class Board {
   int x, y, bombs;
+  std::string keyGuide[10] = {" ", "q - quit", "i - move up", "k - move down", "j - move left", "l - move right", "v - show visible field (number neighbour bombs, or bombs :-))", "b - mark field as bomb", "? - mark field as it can be bomb", " "};
   char tabHidden[10][10];
   char tabVisible[10][10];
   void fieldReveal(int, int);

@@ -13,7 +13,6 @@ int main() {
     system("clear");
     board.showTabVisible();
     std::cout << std::endl;
-    board.showTabHidden();
     usleep(70000);
     if (kbhit()) {
       std::cin >> c;

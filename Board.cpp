@@ -23,9 +23,9 @@ void Board::showTabVisible() {
         std::cout << tabVisible[i][j] << " ";
       }
     }
-    std::cout << std::endl;
+    std::cout << '\t' << keyGuide[i] << std::endl;
   }
-  std::cout << "Pozostalo bomb: " << bombs << std::endl;
+  std::cout << "Bombs left: " << bombs << std::endl;
 }
 
 void Board::showTabHidden() {
@@ -120,9 +120,9 @@ void Board::bombsCheck(char &c) {
         if (tabVisible[i][j] != '@')
           win = false;
   if (win == true)
-    std::cout << std::endl << "Wygrales!";
+    std::cout << std::endl << "You won!";
   else
-    std::cout << std::endl << "Przegrales!";
+    std::cout << std::endl << "You lost!";
   c = 'q';
   std::cin.get();
 }
