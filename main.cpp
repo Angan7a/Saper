@@ -20,8 +20,7 @@ int main() {
     }
     if (board.getBombs() == 0) {
       system("clear");
-      board.showTabVisible();
-      board.bombsCheck(c);
+      board.showEndingBoard(board.bombsCheck(c));
     }
   }
   return 0;

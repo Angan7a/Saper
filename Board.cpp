@@ -123,19 +123,18 @@ void Board::bombMarker() {
   }
 }
 
-void Board::bombsCheck(char &c) {
+bool Board::bombsCheck(char &c) {
   bool win = true;
   for (int i = 0; i < 10; i++)
-    for (int j = 0; j < 10; j++)
+    for (int j = 0; j < 10; j++) {
+      if (tabHidden[i][j] == '0')
+        tabHidden[i][j] = ' ';
       if (tabHidden[i][j] == '9')
         if (tabVisible[i][j] != '@')
           win = false;
-  if (win == true)
-    std::cout << std::endl << "You won!";
-  else
-    std::cout << std::endl << "You lost!";
+    }
   c = 'q';
-  std::cin.get();
+  return win;
 }
 
 void Board::fieldReveal(int xx, int yy) {
@@ -212,3 +211,22 @@ void Board::findNoEmptyUp() {
 }
 
 int Board::getBombs() const { return bombs; }
+
+void Board::showEndingBoard(bool win) {
+  for (int i = 0; i < 10; i++) {
+    for (int j = 0; j < 10; j++) {
+      if (tabVisible[i][j] == '@') {
+        std::cout << "\033[1;41m" << tabHidden[i][j] << "\033[0m ";
+      } else {
+        std::cout << tabHidden[i][j] << " ";
+      }
+    }
+    std::cout << std::endl;
+  }
+
+  if (win == true)
+    std::cout << std::endl << "You won!";
+  else
+    std::cout << std::endl << "You lost!";
+  std::cin.get();
+}

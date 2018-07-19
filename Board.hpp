@@ -21,6 +21,7 @@ public:
   void showTabHidden();
   void createBombs();
   void keyPressed(char &);
-  void bombsCheck(char &);
+  bool bombsCheck(char &);
   int getBombs() const;
+  void showEndingBoard(bool);
 };
