@@ -4,9 +4,10 @@
 
 class Board {
   int x, y, bombs;
+  int sizeX, sizeY;
   std::string keyGuide[10];
-  char tabHidden[10][10];
-  char tabVisible[10][10];
+  char **tabHidden;
+  char **tabVisible;
   void fieldReveal(int, int);
   void findNoEmptyDown();
   void findNoEmptyLeft();
@@ -16,6 +17,7 @@ class Board {
 
 public:
   Board(int x_ = 4, int y_ = 6, int bombs_ = 5);
+  ~Board();
   void fillHashsZeros();
   void showTabVisible();
   void showTabHidden();
