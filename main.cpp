@@ -1,4 +1,5 @@
 #include "Board.hpp"
+#include "gameOptions.hpp"
 #include "kbhit.hpp"
 #include <iostream>
 #include <stdlib.h>
@@ -6,7 +7,9 @@
 
 int main() {
   char c = '-';
-  Board board;
+  int size_x, size_y, bombs;
+  gameOptions(size_x, size_y, bombs);
+  Board board(size_x / 2, size_y / 2, bombs, size_x, size_y);
   board.fillHashsZeros();
   board.createBombs();
   while (c != 'q') {

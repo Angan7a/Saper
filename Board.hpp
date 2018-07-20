@@ -16,7 +16,8 @@ class Board {
   void bombMarker();
 
 public:
-  Board(int x_ = 4, int y_ = 6, int bombs_ = 5);
+  Board(int x_ = 4, int y_ = 6, int bombs_ = 5, int size_x = 10,
+        int size_y = 10);
   ~Board();
   void fillHashsZeros();
   void showTabVisible();

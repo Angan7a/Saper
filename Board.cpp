@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-Board::Board(int x_, int y_, int bombs_) : x(x_), y(y_), bombs(bombs_), sizeX(40), sizeY(40) {
+Board::Board(int x_, int y_, int bombs_, int size_x, int size_y)
+    : x(x_), y(y_), bombs(bombs_), sizeX(size_x), sizeY(size_y) {
   keyGuide[0] = " ";
   keyGuide[1] = "q - quit";
   keyGuide[2] = "i - move up";
@@ -14,9 +15,9 @@ Board::Board(int x_, int y_, int bombs_) : x(x_), y(y_), bombs(bombs_), sizeX(40
   keyGuide[7] = "b - mark field as bomb";
   keyGuide[8] = "? - mark field as it can be bomb";
   keyGuide[9] = " ";
-  tabHidden = new char*[sizeY];
-  tabVisible = new char*[sizeY];
-  for(int i = 0; i < sizeY; ++i) {
+  tabHidden = new char *[sizeY];
+  tabVisible = new char *[sizeY];
+  for (int i = 0; i < sizeY; ++i) {
     tabHidden[i] = new char[sizeX];
     tabVisible[i] = new char[sizeX];
   }
@@ -40,7 +41,7 @@ void Board::showTabVisible() {
         std::cout << tabVisible[i][j] << " ";
       }
     }
-   // std::cout << '\t' << keyGuide[i] << std::endl;
+    // std::cout << '\t' << keyGuide[i] << std::endl;
     std::cout << std::endl;
   }
   std::cout << "Bombs left: " << bombs << std::endl;
@@ -60,12 +61,12 @@ void Board::showTabHidden() {
 }
 
 void Board::createBombs() {
-  int **tabInt = new int *[sizeY+2];
-  for(int i = 0; i < sizeY+2; ++i) {
-    tabInt[i] = new int[sizeX+2];
+  int **tabInt = new int *[sizeY + 2];
+  for (int i = 0; i < sizeY + 2; ++i) {
+    tabInt[i] = new int[sizeX + 2];
   }
-  for (int i = 0; i < sizeY+2; i++) {
-    for (int j = 0; j < sizeX+2; j++) {
+  for (int i = 0; i < sizeY + 2; i++) {
+    for (int j = 0; j < sizeX + 2; j++) {
       tabInt[i][j] = 0;
     }
   }
@@ -87,15 +88,15 @@ void Board::createBombs() {
       }
     }
   }
-  for (int i = 1; i < sizeY+1; i++) {
-    for (int j = 1; j < sizeX+1; j++) {
+  for (int i = 1; i < sizeY + 1; i++) {
+    for (int j = 1; j < sizeX + 1; j++) {
       tabHidden[i - 1][j - 1] = (tabInt[i][j] % 10) + 48;
     }
   }
-  for(int i = 0; i < sizeY+2; ++i) {
-    delete [] tabInt[i];
+  for (int i = 0; i < sizeY + 2; ++i) {
+    delete[] tabInt[i];
   }
-  delete [] tabInt;
+  delete[] tabInt;
 }
 
 void Board::keyPressed(char &c) {
@@ -166,11 +167,11 @@ void Board::fieldReveal(int xx, int yy) {
     tabVisible[yy][xx] = ' ';
     if (xx > 0 && tabVisible[yy][xx - 1] == '#')
       fieldReveal(xx - 1, yy);
-    if (xx < sizeX-1 && tabVisible[yy][xx + 1] == '#')
+    if (xx < sizeX - 1 && tabVisible[yy][xx + 1] == '#')
       fieldReveal(xx + 1, yy);
     if (yy > 0 && tabVisible[yy - 1][xx] == '#')
       fieldReveal(xx, yy - 1);
-    if (yy < sizeY-1 && tabVisible[yy + 1][xx] == '#')
+    if (yy < sizeY - 1 && tabVisible[yy + 1][xx] == '#')
       fieldReveal(xx, yy + 1);
   }
 }
@@ -178,11 +179,11 @@ void Board::fieldReveal(int xx, int yy) {
 void Board::findNoEmptyDown() {
   do {
     y++;
-    if (y > sizeY-1) {
+    if (y > sizeY - 1) {
       x++;
       y = 0;
     }
-    if (x > sizeX-1) {
+    if (x > sizeX - 1) {
       x = 0;
       y = 0;
     }
@@ -194,11 +195,11 @@ void Board::findNoEmptyLeft() {
     x--;
     if (x < 0) {
       y--;
-      x = sizeX-1;
+      x = sizeX - 1;
     }
     if (y < 0) {
-      x = sizeX-1;
-      y = sizeY-1;
+      x = sizeX - 1;
+      y = sizeY - 1;
     }
   } while (tabVisible[y][x] == ' ');
 }
@@ -206,11 +207,11 @@ void Board::findNoEmptyLeft() {
 void Board::findNoEmptyRight() {
   do {
     x++;
-    if (x > sizeX-1) {
+    if (x > sizeX - 1) {
       y++;
       x = 0;
     }
-    if (y > sizeY-1) {
+    if (y > sizeY - 1) {
       x = 0;
       y = 0;
     }
@@ -222,11 +223,11 @@ void Board::findNoEmptyUp() {
     y--;
     if (y < 0) {
       x--;
-      y = sizeY-1;
+      y = sizeY - 1;
     }
     if (x < 0) {
-      x = sizeX-1;
-      y = sizeY-1;
+      x = sizeX - 1;
+      y = sizeY - 1;
     }
   } while (tabVisible[y][x] == ' ');
 }
@@ -267,10 +268,10 @@ void Board::showEndingBoard(bool win) {
   std::cin.get();
 }
 Board::~Board() {
-  for(int i = 0; i < sizeY; ++i) {
-    delete [] tabVisible[i];
-    delete [] tabHidden[i];
+  for (int i = 0; i < sizeY; ++i) {
+    delete[] tabVisible[i];
+    delete[] tabHidden[i];
   }
-  delete [] tabVisible;
-  delete [] tabHidden;
+  delete[] tabVisible;
+  delete[] tabHidden;
 }
