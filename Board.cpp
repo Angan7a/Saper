@@ -231,6 +231,11 @@ void Board::findNoEmptyUp() {
 int Board::getBombs() const { return bombs; }
 
 void Board::showEndingBoard(bool win) {
+  std::string colorsInfo[4];
+  colorsInfo[0] = " ";
+  colorsInfo[1] = "\033[92mGreen\033[0m-corectly marked bombs";
+  colorsInfo[2] = "\033[93mYellow\033[0m-bad markings";
+  colorsInfo[3] = "\033[91mRed\033[0m-unmarked bombs\n";
   for (int i = 0; i < sizeY; i++) {
     for (int j = 0; j < sizeX; j++) {
       if (tabVisible[i][j] == '@' && tabHidden[i][j] == '9') {
@@ -249,6 +254,8 @@ void Board::showEndingBoard(bool win) {
         std::cout << tabVisible[i][j] << " ";
       }
     }
+    if (i < 4)
+      std::cout << "\t" << colorsInfo[i];
     std::cout << std::endl;
   }
 
@@ -256,11 +263,6 @@ void Board::showEndingBoard(bool win) {
     std::cout << std::endl << "You won!";
   else
     std::cout << std::endl << "You lost!";
-  std::cout << std::endl
-            << "\033[92mGreen\033[0m-corectly marked bombs" << std::endl
-            << "\033[93mYellow\033[0m-bad markings" << std::endl
-            << "\033[91mRed\033[0m-unmarked bombs\n";
-
   std::cin.get();
 }
 Board::~Board() {
