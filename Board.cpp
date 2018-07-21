@@ -7,14 +7,9 @@ Board::Board(int x_, int y_, int bombs_, int size_x, int size_y)
     : x(x_), y(y_), bombs(bombs_), sizeX(size_x), sizeY(size_y) {
   keyGuide[0] = " ";
   keyGuide[1] = "q - quit";
-  keyGuide[2] = "i - move up";
-  keyGuide[3] = "k - move down";
-  keyGuide[4] = "j - move left";
-  keyGuide[5] = "l - move right";
-  keyGuide[6] = "v - show visible field (number neighbour bombs, or bombs :-))";
-  keyGuide[7] = "b - mark field as bomb";
-  keyGuide[8] = "? - mark field as it can be bomb";
-  keyGuide[9] = " ";
+  keyGuide[2] = "v - show visible field (number neighbour bombs, or bombs :-))";
+  keyGuide[3] = "b - mark field as bomb";
+  keyGuide[4] = "? - mark field as it can be bomb";
   tabHidden = new char *[sizeY];
   tabVisible = new char *[sizeY];
   for (int i = 0; i < sizeY; ++i) {
@@ -41,7 +36,7 @@ void Board::showTabVisible() {
         std::cout << tabVisible[i][j] << " ";
       }
     }
-    if (i < 10)
+    if (i < 5)
       std::cout << '\t' << keyGuide[i];
     std::cout << std::endl;
   }

@@ -5,7 +5,7 @@
 class Board {
   int x, y, bombs;
   int sizeX, sizeY;
-  std::string keyGuide[10];
+  std::string keyGuide[5];
   char **tabHidden;
   char **tabVisible;
   void fieldReveal(int, int);
