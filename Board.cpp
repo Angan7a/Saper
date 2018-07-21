@@ -235,7 +235,7 @@ void Board::showEndingBoard(bool win) {
   colorsInfo[0] = " ";
   colorsInfo[1] = "\033[92mGreen\033[0m-corectly marked bombs";
   colorsInfo[2] = "\033[93mYellow\033[0m-bad markings";
-  colorsInfo[3] = "\033[91mRed\033[0m-unmarked bombs\n";
+  colorsInfo[3] = "\033[91mRed\033[0m-unmarked bombs";
   for (int i = 0; i < sizeY; i++) {
     for (int j = 0; j < sizeX; j++) {
       if (tabVisible[i][j] == '@' && tabHidden[i][j] == '9') {
