@@ -88,11 +88,11 @@ int optionSelect(std::string options[4]) {
   while (loop) {
     system("clear");
     for (int i = 0; i < 4; i++) {
-      if (i == line)
-        std::cout << "\033[1;43m";
-      std::cout << options[i] << std::endl;
-      if (i == line)
-        std::cout << "\033[0m";
+      if (i == line) {
+        std::cout << "\033[1;43m" << options[i] << "\033[0m" << std::endl;
+      } else {
+        std::cout << options[i] << std::endl;
+      }
     }
     while (!kbhit(c)) {
       usleep(7000);
