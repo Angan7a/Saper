@@ -54,11 +54,11 @@ void gameOptions(int &size_x, int &size_y, int &bombs) {
     case 1:
       bombs = 15;
       break;
-    case 3:
-      bombs = 60;
-      break;
     case 2:
       bombs = 30;
+      break;
+    case 3:
+      bombs = 60;
       break;
     }
 
@@ -72,10 +72,10 @@ void gameOptions(int &size_x, int &size_y, int &bombs) {
     case 1:
       bombs = 25;
       break;
-    case 3:
+    case 2:
       bombs = 50;
       break;
-    case 2:
+    case 3:
       bombs = 100;
       break;
     }
