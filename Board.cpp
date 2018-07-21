@@ -101,16 +101,16 @@ void Board::createBombs() {
 }
 
 void Board::keyPressed(char &c) {
-  if (c == 'l') {
+  if (c == 67) {
     findNoEmptyRight();
   }
-  if (c == 'j') {
+  if (c == 68) {
     findNoEmptyLeft();
   }
-  if (c == 'k') {
+  if (c == 66) {
     findNoEmptyDown();
   }
-  if (c == 'i') {
+  if (c == 65) {
     findNoEmptyUp();
   }
   if (c == 'q') {
