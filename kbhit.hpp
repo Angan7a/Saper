@@ -1,4 +1,3 @@
 #pragma once
 
-
-int kbhit(void);
+int kbhit(char &ch);

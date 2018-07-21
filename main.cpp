@@ -16,10 +16,10 @@ int main() {
     system("clear");
     board.showTabVisible();
     std::cout << std::endl;
-    while (!kbhit()) {
+    while (!kbhit(c)) {
       usleep(70000);
     }
-    std::cin >> c;
+    // std::cin >> c;
     board.keyPressed(c);
 
     if (board.getBombs() == 0) {

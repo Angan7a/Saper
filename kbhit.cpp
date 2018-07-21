@@ -6,9 +6,8 @@
 
 #include "kbhit.hpp"
 
-int kbhit(void) {
+int kbhit(char &ch) {
   struct termios oldt, newt;
-  int ch;
   int oldf;
 
   tcgetattr(STDIN_FILENO, &oldt);
@@ -24,7 +23,7 @@ int kbhit(void) {
   fcntl(STDIN_FILENO, F_SETFL, oldf);
 
   if (ch != EOF) {
-    ungetc(ch, stdin);
+    // ungetc(ch, stdin);
     return 1;
   }
 

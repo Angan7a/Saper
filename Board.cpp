@@ -42,8 +42,8 @@ void Board::showTabVisible() {
       }
     }
     if (i < 10)
-      std::cout << '\t' << keyGuide[i] << std::endl;
-    // std::cout << std::endl;
+      std::cout << '\t' << keyGuide[i];
+    std::cout << std::endl;
   }
   std::cout << "Bombs left: " << bombs << std::endl;
 }
