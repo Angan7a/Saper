@@ -1,4 +1,6 @@
-SAPER
+[![Build Status](https://travis-ci.org/Angan7a/Saper.svg?branch=master)](https://travis-ci.org/Angan7a/Saper)
+
+# SAPER
 
 This is game sapper in console.
 
